@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Canvas</title>
+    <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/9ccceeeb67.js" crossorigin="anonymous"></script>
+</head>
+<body class="height-100vh flex justify-center align-center">
+<div class="container">
+    <div class="toolBar flex justify-between align-center">
+        <div class="tools flex justify-between align-center">
+            <div class="eraser pointer no-select">
+                <i class="fa-solid fa-eraser"></i>
+                <span>eraser</span>
+            </div>
+            <div class="brush pointer no-select active">
+                <i class="fa-solid fa-paintbrush"></i>
+                <span>brush</span>
+            </div>
+            <div class="palette no-select">
+                <i class="fa-solid fa-palette"></i>
+                <span>choose color</span>
+                <label>
+                    <input type="color" id="palette" class="pointer">
+                </label>
+            </div>
+            <div class="range">
+                <label>
+                    <input type="range" class="pointer" id="brush-width" min="1" max="10">
+                </label>
+            </div>
+        </div>
+        <div class="buts flex justify-center">
+            <button class="radius-5px pointer">save</button>
+            <button class="radius-5px pointer">clear</button>
+        </div>
+    </div>
+    <div class="draw">
+        <canvas></canvas>
+    </div>
+</div>
+
+<script src="./main.js"></script>
+</body>
+</html>
