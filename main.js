@@ -17,6 +17,9 @@ window.addEventListener('load', ()=>{
 canvas.addEventListener('mousemove', drawing);
 canvas.addEventListener('mousedown', startDrawing);
 canvas.addEventListener('mouseup', stopDrawing);
+canvas.addEventListener('touchstart', touchDrawing);
+canvas.addEventListener('touchmove', touchStartDrawing);
+canvas.addEventListener('touchend', touchStopDrawing);
 btn[0].addEventListener('click', save);
 btn[1].addEventListener('click', clear);
 
@@ -37,9 +40,7 @@ brush.addEventListener('click', ()=>{
     myBrushColor = brushColor.value;
 })
 function drawing(e) {
-    if(!isDrawing){
-        return;
-    }
+    if(!isDrawing) return;
     ctx.lineTo(e.offsetX, e.offsetY);
     ctx.stroke();
     ctx.strokeStyle = `${myBrushColor}`;
@@ -50,6 +51,23 @@ function startDrawing() {
     ctx.lineWidth = myBrushWidth;
 }
 function stopDrawing() {
+    isDrawing = false;
+}
+function touchDrawing(e) {
+    isDrawing = true;
+    const { clientX, clientY } = e.touches[0];
+    ctx.beginPath();
+    ctx.moveTo(clientX, clientY);
+    ctx.lineWidth = myBrushWidth;
+}
+function touchStartDrawing(e) {
+    if (!isDrawing) return;
+    const { clientX, clientY } = e.touches[0];
+    ctx.lineTo(clientX, clientY);
+    ctx.stroke();
+    ctx.strokeStyle = `${myBrushColor}`;
+}
+function touchStopDrawing() {
     isDrawing = false;
 }
 function save() {
